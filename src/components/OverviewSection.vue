@@ -16,7 +16,7 @@
           height="60"
           fill="none"
         >
-          <circle cx="40" cy="40" r="40" fill="#ff97b8" />
+          <circle cx="40" cy="40" r="40" fill="#FFD800B3" />
         </svg>
         <div class="line-container">
           <div class="growing-line"></div>
@@ -199,7 +199,7 @@ h2 {
 .growing-line {
   width: 0;
   height: 100%;
-  background-color: rgba(255, 151, 184, 0.6);
+  background-color: rgba(255, 216, 0, 0.7);
   position: absolute;
   top: 0;
   left: 0;

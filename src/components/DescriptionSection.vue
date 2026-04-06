@@ -5,25 +5,6 @@
     class="description-section"
   >
     <div class="description-wrapper">
-      <h2>Description</h2>
-
-      <div class="decoration">
-        <!-- SVG Blob -->
-        <svg
-          class="blob-svg"
-          viewBox="0 0 80 80"
-          xmlns="http://www.w3.org/2000/svg"
-          width="60"
-          height="60"
-          fill="none"
-        >
-          <circle cx="40" cy="40" r="40" fill="#ff97b8" />
-        </svg>
-        <div class="line-container">
-          <div class="growing-line"></div>
-        </div>
-      </div>
-
       <div class="description-container">
         <!-- Text Section (Table) -->
         <dl class="description-list">
@@ -43,6 +24,37 @@
             :src="descriptionData.imageSrc"
             :alt="descriptionData.imageAlt"
           />
+
+          <!-- Hi-Fi prototype link -->
+          <div
+            v-if="prototypeLinks && prototypeLinks.length"
+            class="prototype-links"
+          >
+            <a
+              v-for="(link, index) in prototypeLinks.filter((l) =>
+                l.linkText.includes('Prototype')
+              )"
+              :key="index"
+              :href="link.url"
+              target="_blank"
+              class="prototype-button"
+            >
+              {{ link.linkText }}
+            </a>
+
+            <!-- Walkthrough -->
+            <a
+              v-for="(link, index) in prototypeLinks.filter((l) =>
+                l.linkText.toLowerCase().includes('walkthrough')
+              )"
+              :key="'walkthrough-' + index"
+              :href="link.url"
+              target="_blank"
+              class="prototype-button"
+            >
+              {{ link.linkText }}
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -75,6 +87,11 @@ export default {
           typeof value.imageAlt === "string"
         );
       },
+    },
+    prototypeLinks: {
+      type: Array,
+      required: false,
+      default: () => [],
     },
   },
 };
@@ -130,7 +147,7 @@ h2 {
 .growing-line {
   width: 0;
   height: 100%;
-  background-color: rgba(255, 151, 184, 0.6);
+  background-color: rgba(255, 216, 0, 0.7);
   position: absolute;
   top: 0;
   left: 0;
@@ -243,5 +260,44 @@ dd {
     width: 90%;
     min-width: unset;
   }
+}
+
+.prototype-links {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.prototype-button {
+  display: inline-block;
+  width: 200px;
+  padding: 12px;
+  background: linear-gradient(
+    42deg,
+    rgba(255, 255, 153, 1) 0%,
+    rgba(255, 216, 0, 1) 35%,
+    rgba(102, 204, 255, 1) 80%,
+    rgba(41, 86, 109, 1) 100%
+  );
+  background-size: 300% 300%;
+  color: #1e2328;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: transform 0.5s ease, background-position 0.5s ease,
+    box-shadow 0.3s ease;
+  animation: gradientFlow 10s ease infinite;
+  transform: scale(1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: "Nunito Sans", sans-serif;
+}
+
+.prototype-button:hover {
+  transform: translateY(-3px) scale(1.02);
+  background-position: 100% 50%;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 </style>

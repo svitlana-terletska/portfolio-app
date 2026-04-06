@@ -1,6 +1,6 @@
 <template>
-  <section class="intro bg-intro">
-    <!-- Video Container -->
+  <div class="intro-panel bg-intro">
+    <!-- Video -->
     <div class="video-wrapper">
       <video
         ref="introVideo"
@@ -12,13 +12,12 @@
         @canplay="handleCanPlay"
         @play="updatePlayButton"
         @pause="updatePlayButton"
+        @ended="handleVideoEnded"
       >
-        <!-- Use the computed property videoBaseUrl -->
         <source :src="`${videoBaseUrl}UXDesignerAtWork.mp4`" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
-      <!-- Always Visible Play/Pause Button -->
       <button
         @click.stop="togglePlayback"
         class="play-btn"
@@ -28,10 +27,10 @@
       </button>
     </div>
 
-    <!-- Text + Button Section -->
-    <div class="intro-text">
-      <p class="fade-in-delay1">
-        "Designing thoughtful solutions with strategy and soul".
+    <!-- Text — animations only fire once videoEnded prop is true -->
+    <div class="intro-text do-animate">
+      <p class="tagline-top">
+        "Designing thoughtful solutions with strategy and soul."
       </p>
 
       <h1 class="intro-heading">
@@ -39,40 +38,33 @@
           v-for="(char, index) in headingChars"
           :key="index"
           class="char"
-          :style="{ animationDelay: `${index * 0.05}s` }"
+          :style="{ animationDelay: `${3.5 + 0.15 + index * 0.05}s` }"
         >
-          {{ char }}
+          {{ char === " " ? "\u00A0" : char }}
         </span>
       </h1>
-      <h2 class="myname">
-        I’m Svitlana Terletska, <br />
-        UX Designer
-      </h2>
-      <p class="fade-in-delay2">Explore my thought process through design.</p>
 
-      <!--Case Studies Scroll Button-->
-      <button
-        class="case-studies-btn"
-        :class="{ 'button-animated': animateButton }"
-      >
-        Case Studies <br /><span class="scroll">Scroll</span> <br /><img
-          src="@/assets/down-arrow.gif"
-          class="arrow"
-          alt="Animated Down Arrow Icon"
-        />
-      </button>
+      <h2 class="myname">I'm Svitlana Terletska,<br />UX Designer</h2>
+
+      <p class="tagline-bottom">Explore my thought process through design.</p>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
 export default {
   name: "IntroSection",
+  props: {
+    videoEnded: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  emits: ["videoEnded"],
   computed: {
     headingChars() {
       return "Welcome".split("");
     },
-
     videoBaseUrl() {
       return process.env.BASE_URL || "/";
     },
@@ -80,20 +72,13 @@ export default {
   data() {
     return {
       isPaused: false,
-      animateButton: false,
     };
   },
   methods: {
     togglePlayback() {
       const video = this.$refs.introVideo;
       if (!video) return;
-
-      if (video.paused) {
-        video.play();
-      } else {
-        video.pause();
-      }
-
+      video.paused ? video.play() : video.pause();
       this.updatePlayButton();
     },
     updatePlayButton() {
@@ -105,41 +90,60 @@ export default {
       const video = this.$refs.introVideo;
       video.classList.add("fade-in");
       this.updatePlayButton();
-
-      video.onended = () => {
-        this.isPaused = true;
-        this.animateButton = true;
-      };
+    },
+    handleVideoEnded() {
+      this.isPaused = true;
+      this.$emit("videoEnded");
     },
   },
 };
 </script>
-  
-  <style scoped>
-.intro {
+
+<style scoped>
+.intro-panel {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
-  height: 100vh;
+  height: 100%;
+  padding: 2rem 1.5rem;
+  box-sizing: border-box;
+  position: relative;
 }
 
 .bg-intro {
   background-color: #1e2328;
 }
 
+.intro-panel::after {
+  content: "";
+  position: absolute;
+  top: 10%;
+  right: 0;
+  height: 80%;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(255, 255, 255, 0.12) 30%,
+    rgba(255, 255, 255, 0.12) 70%,
+    transparent
+  );
+}
+
+/* Video */
 .video-wrapper {
   position: relative;
-  max-width: 40vw;
   width: 100%;
+  max-width: 500px;
 }
 
 .intro-video {
   width: 100%;
-  border-radius: 1rem;
+  border-radius: 0.75rem;
   opacity: 0;
   transition: opacity 1s ease-in;
+  display: block;
 }
 
 .fade-in {
@@ -148,75 +152,73 @@ export default {
 
 .play-btn {
   position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-  background: rgba(255, 255, 255, 0.03);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(3.3px);
-  -webkit-backdrop-filter: blur(3.3px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  bottom: 0.75rem;
+  right: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   color: white;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 1rem;
+  width: 36px;
+  height: 36px;
+  font-size: 0.85rem;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
+  transition: background-color 0.3s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .play-btn:hover {
-  background-color: rgba(18, 18, 18, 0.9);
+  background-color: rgba(255, 255, 255, 0.15);
   transform: scale(1.1);
 }
 
+/* ── Text container */
 .intro-text {
-  flex: 1 1 300px;
   text-align: center;
   color: #fff;
   font-family: "Nunito Sans", sans-serif;
+  margin-top: 1.5rem;
+  width: 100%;
+  max-width: 380px;
   position: relative;
-  overflow: hidden;
 }
 
 .intro-text::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("/src/assets/Wave.svg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  inset: 0;
+
   opacity: 0.04;
   z-index: 0;
+  pointer-events: none;
 }
-/* Ensure text content stays on top */
+
 .intro-text > * {
   position: relative;
   z-index: 1;
 }
-/*my name animation*/
-.myname {
-  font-family: "Philosopher";
+
+.tagline-top {
   opacity: 0;
-  transform: translateY(30px);
-  animation: slideFadeUp 0.8s ease-out forwards;
-  animation-delay: 0.8s;
-  line-height: 1.5;
+  font-family: "Philosopher", serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.7);
 }
 
-@keyframes slideFadeUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.do-animate .tagline-top {
+  animation: fadeIn 1.5s ease-out forwards;
+  animation-delay: 3.5s;
 }
-/* Heading animation*/
+
+/* "Welcome" heading */
 .intro-heading {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
   display: flex;
   flex-wrap: wrap;
   gap: 2px;
@@ -226,32 +228,55 @@ export default {
 .char {
   display: inline-block;
   opacity: 0;
-  transform: translateY(30px);
-  animation: slideUp 0.4s ease-out forwards;
+  transform: translateY(20px);
+  /* animationDelay applied via :style, starting at 0.15s */
 }
 
+.do-animate .char {
+  animation: slideUp 1.5s ease-out forwards;
+}
+
+/* Name */
+.myname {
+  font-family: "Philosopher", serif;
+  font-size: 1.1rem;
+  opacity: 0;
+  transform: translateY(20px);
+  line-height: 1.6;
+  margin: 0.5rem 0;
+}
+
+.do-animate .myname {
+  animation: slideFadeUp 1.5s ease-out forwards;
+  animation-delay: 4s;
+}
+
+/* Tagline */
+.tagline-bottom {
+  font-size: 0.9rem;
+  opacity: 0;
+  margin-top: 0.5rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.do-animate .tagline-bottom {
+  animation: fadeIn 1.5s ease-out forwards;
+  animation-delay: 4.25s;
+}
+
+/* ── Keyframes ── */
 @keyframes slideUp {
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-/* End of Heading animation*/
 
-.fade-in-delay1 {
-  opacity: 0;
-  animation: fadeIn 1s ease-out forwards;
-  animation-delay: 2.5s;
-  font-family: "Philosopher";
-  font-style: italic;
-  margin-bottom: 5em;
-}
-.fade-in-delay2 {
-  opacity: 0;
-  animation: fadeIn 1s ease-out forwards;
-  animation-delay: 1.5s;
-
-  margin: 2em;
+@keyframes slideFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fadeIn {
@@ -260,92 +285,19 @@ export default {
   }
 }
 
-/*Case Studies button*/
-.case-studies-btn {
-  padding: 0.75rem 1.5rem;
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
-  color: #1e2328;
-  border: 1px solid white;
-  border-radius: 8px;
-  cursor: default;
-  font-weight: 700;
-  transition: background-color 0.3s ease;
-  font-family: "Nunito Sans", sans-serif;
-  background: linear-gradient(
-    42deg,
-    rgba(255, 255, 153, 1) 0%,
-    rgba(255, 216, 0, 1) 35%,
-    rgba(102, 204, 255, 1) 80%,
-    rgba(41, 86, 109, 1) 100%
-  );
+@media (max-width: 900px) {
+  .intro-panel {
+    height: auto;
+    padding: 2.5rem 1.5rem;
+    min-height: 60vh;
+  }
 
-  background-size: 300% 300%;
-  transition: transform 0.8s ease, background-position 0.5s ease,
-    color 0.3s ease;
-}
+  .intro-panel::after {
+    display: none;
+  }
 
-.case-studies-btn:hover {
-  background-position: right center;
-  transform: scale(1.05);
-  color: #1e2328;
-}
-.arrow {
-  width: 80px;
-}
-.scroll {
-  font-style: italic;
-  font-size: 0.9rem;
-}
-/* Animation triggered after video ends */
-.button-animated {
-  animation: popAndPulse 0.5s ease-out forwards, gradientFlow 3s ease infinite;
-  transform: scale(1);
-  background-size: 300% 300%;
-}
-/* Looping animated background */
-@keyframes gradientFlow {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 0%;
-  }
-}
-/* Pop animation */
-@keyframes popAndPulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1.03);
-  }
-}
-
-/* Responsive stacking on smaller screens */
-@media (max-width: 700px) {
-  .intro {
-    flex-direction: column;
-    height: 100%;
-  }
-  .intro-text {
-    height: 100%;
-  }
   .video-wrapper {
     max-width: 90vw;
   }
-
-  .intro-text {
-    text-align: center;
-  }
 }
 </style>
-  
-   
-  

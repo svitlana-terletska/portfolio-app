@@ -13,6 +13,9 @@
         class="logo"
         :class="{ 'logo-scrolled': !isAtTop }"
       />
+      <span class="logo-name" :class="{ 'logo-name-scrolled': !isAtTop }">
+        Svitlana Terletska
+      </span>
     </router-link>
 
     <ul class="nav-links">
@@ -138,6 +141,14 @@ export default {
   /* Add a filter for color change. This assumes a white logo. */
   filter: brightness(100%);
   transition: filter 0.3s ease;
+}
+.logo-name {
+  color: #fff;
+  margin-left: 1rem;
+  text-decoration: none;
+}
+.logo-name-scrolled {
+  color: #1e2328;
 }
 
 /* Logo color when scrolled down and navbar is visible */

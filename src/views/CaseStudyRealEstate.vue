@@ -1,6 +1,9 @@
 <template>
   <section class="case-wrapper">
-    <DescriptionSection :descriptionData="realestateDescriptionData" />
+    <DescriptionSection
+      :descriptionData="realestateDescriptionData"
+      :prototypeLinks="currentPrototypeLinkContent.linkBlocks"
+    />
     <OverviewSection :overviewContent="realestateOverviewContent" />
     <UserResearchSection :researchContent="realestatelUserResearchContent" />
     <PersonasSection :personas="caseStudyPersonas" />
@@ -670,6 +673,13 @@ export default {
             heading: "Adobe XD Link",
             url: "https://xd.adobe.com/view/ae0288af-2d74-4d03-b4b8-af1030c0f06e-fb51/?fullscreen",
             linkText: "View Hi-Fi Prototype",
+          },
+
+          // Video Walkthrough
+          {
+            heading: "Video Link",
+            url: "https://youtu.be/-bLWQ3msAq0",
+            linkText: "View Walkthrough",
           },
         ],
         imageUrl: new URL("../assets/adobeXD-realestate.png", import.meta.url)

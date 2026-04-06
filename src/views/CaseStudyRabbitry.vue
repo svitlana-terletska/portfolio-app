@@ -1,6 +1,9 @@
 <template>
   <section class="case-wrapper">
-    <DescriptionSection :descriptionData="rabbitryDescriptionData" />
+    <DescriptionSection
+      :descriptionData="rabbitryDescriptionData"
+      :prototypeLinks="currentPrototypeLinkContent.linkBlocks"
+    />
     <OverviewSection :overviewContent="rabbitryOverviewContent" />
     <UserResearchSection :researchContent="rabbitryUserResearchContent" />
     <PersonasSection :personas="caseStudyPersonas" />
@@ -478,6 +481,13 @@ export default {
             heading: "Figma Link",
             url: "https://tinyurl.com/3aub2vc4",
             linkText: "View Hi-Fi Prototype",
+          },
+
+          // Video Walkthrough
+          {
+            heading: "Video Link",
+            url: "https://youtu.be/-bLWQ3msAq0",
+            linkText: "View Walkthrough",
           },
         ],
         imageUrl: new URL("../assets/figma-rabbitry.png", import.meta.url).href,

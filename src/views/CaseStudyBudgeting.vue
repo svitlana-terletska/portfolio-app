@@ -1,6 +1,9 @@
 <template>
   <section class="case-wrapper">
-    <DescriptionSection :descriptionData="budgetingDescriptionData" />
+    <DescriptionSection
+      :descriptionData="budgetingDescriptionData"
+      :prototypeLinks="currentPrototypeLinkContent.linkBlocks"
+    />
     <OverviewSection :overviewContent="budgetingOverviewContent" />
     <UserResearchSection :researchContent="budgetingUserResearchContent" />
     <PersonasSection :personas="caseStudyPersonas" />
@@ -397,6 +400,13 @@ export default {
             heading: "Mobile",
             url: "https://www.figma.com/proto/bXiFTb5YwbCBpdUAc4IGau/Budgeting-App?page-id=63%3A557&type=design&node-id=63-591&viewport=598%2C373%2C0.29&t=JeRNksbo8JzwZcKR-1&scaling=scale-down&starting-point-node-id=63%3A591&mode=design",
             linkText: "View Mobile Prototype",
+          },
+
+          // Video Walkthrough
+          {
+            heading: "Video Link",
+            url: "https://youtu.be/-bLWQ3msAq0",
+            linkText: "View Walkthrough",
           },
         ],
         imageUrl: new URL("../assets/figma-budgeting.png", import.meta.url)

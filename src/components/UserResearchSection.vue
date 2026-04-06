@@ -23,7 +23,7 @@
           height="80"
           fill="none"
         >
-          <circle cx="40" cy="40" r="40" fill="#ff97b8" />
+          <circle cx="40" cy="40" r="40" fill="#FFD800B3" />
           <rect x="20" y="21" width="40" height="40" rx="3" fill="white" />
           <rect x="29" y="35" width="5" height="15" rx="1" fill="#ff97b8" />
           <rect x="37" y="41" width="5" height="9" rx="1" fill="#ff97b8" />
@@ -191,7 +191,7 @@ export default {
 .growing-line {
   width: 0;
   height: 100%;
-  background-color: rgba(255, 151, 184, 0.6);
+  background-color: rgba(255, 216, 0, 0.7);
   position: absolute;
   top: 0;
   left: 0;

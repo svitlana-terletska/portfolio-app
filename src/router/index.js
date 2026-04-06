@@ -58,7 +58,7 @@ const routes = [
                 path: '/case-studies',
                 name: 'CaseStudies',
                 // Lazy load CaseStudyCards component (assuming it's a view, not just a component used within other views)
-                component: () => import(/* webpackChunkName: "case-studies" */ '@/components/CaseStudyCards.vue')
+                component: () => import(/* webpackChunkName: "case-studies" */ '@/views/CaseStudiesView.vue')
             }
         ]
     }

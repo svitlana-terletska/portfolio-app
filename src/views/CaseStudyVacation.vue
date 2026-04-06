@@ -1,6 +1,9 @@
 <template>
   <section class="case-wrapper">
-    <DescriptionSection :descriptionData="vacationDescriptionData" />
+    <DescriptionSection
+      :descriptionData="vacationDescriptionData"
+      :prototypeLinks="currentPrototypeLinkContent.linkBlocks"
+    />
     <OverviewSection :overviewContent="vacationOverviewContent" />
     <CompetitiveAuditSection :auditContent="currentCompetitiveAuditContent" />
     <UserResearchSection :researchContent="vacationUserResearchContent" />
@@ -377,6 +380,13 @@ export default {
             heading: "Figma Link",
             url: "https://www.figma.com/proto/ZCNefKCR4FZ2qYzBTTvJxP/Vacation-app--Copy-?page-id=0%3A1&node-id=3618-1427&viewport=164%2C284%2C0.42&t=52YxaxnrlmftAnPd-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=3618%3A1427",
             linkText: "View Hi-Fi Prototype",
+          },
+
+          // Video Walkthrough
+          {
+            heading: "Video Link",
+            url: "https://youtu.be/-bLWQ3msAq0",
+            linkText: "View Walkthrough",
           },
         ],
         imageUrl: new URL("../assets/figma-vacation.png", import.meta.url).href,

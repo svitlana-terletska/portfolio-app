@@ -1,6 +1,9 @@
 <template>
   <section class="case-wrapper">
-    <DescriptionSection :descriptionData="medicalDescriptionData" />
+    <DescriptionSection
+      :descriptionData="medicalDescriptionData"
+      :prototypeLinks="currentPrototypeLinkContent.linkBlocks"
+    />
     <OverviewSection :overviewContent="medicalOverviewContent" />
     <UserResearchSection :researchContent="medicalUserResearchContent" />
     <PersonasSection :personas="caseStudyPersonas" />
@@ -52,7 +55,7 @@ export default {
         tableData: [
           {
             label: "Case Study",
-            value: "Medical Treatment Cost Feature Design",
+            value: "Medical Treatment Cost Feature",
           },
           { label: "Role", value: "UI/UX Designer" },
           { label: "Timeline", value: " January 2020" },
