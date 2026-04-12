@@ -38,7 +38,7 @@
           v-for="(char, index) in headingChars"
           :key="index"
           class="char"
-          :style="{ animationDelay: `${3.5 + 0.15 + index * 0.05}s` }"
+          :style="{ animationDelay: `${1.5 + 0.15 + index * 0.05}s` }"
         >
           {{ char === " " ? "\u00A0" : char }}
         </span>

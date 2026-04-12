@@ -1,11 +1,7 @@
 <template>
   <div class="home-layout">
-    <IntroSection
-      class="left-panel"
-      :video-ended="videoEnded"
-      @video-ended="onVideoEnded"
-    />
-    <CaseStudyCards class="right-panel" :video-ended="videoEnded" />
+    <IntroSection class="left-panel" />
+    <CaseStudyCards class="right-panel" />
   </div>
 </template>
 
@@ -20,14 +16,10 @@ export default {
     CaseStudyCards,
   },
   data() {
-    return {
-      videoEnded: false,
-    };
+    return {};
   },
   methods: {
-    onVideoEnded() {
-      this.videoEnded = true;
-    },
+    onVideoEnded() {},
   },
 };
 </script>

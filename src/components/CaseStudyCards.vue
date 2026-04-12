@@ -1,6 +1,6 @@
 <template>
   <div class="case-studies-panel">
-    <div class="panel-header" :class="{ 'do-animate': videoEnded }">
+    <div class="panel-header do-animate">
       <h2 class="panel-label">Case Studies</h2>
       <div class="header-line"></div>
     </div>
@@ -10,9 +10,8 @@
         v-for="(study, index) in displayedStudies"
         :key="study.link"
         :to="study.link"
-        class="case-card"
-        :class="{ 'do-animate': videoEnded }"
-        :style="{ animationDelay: `${index * 0.35}s` }"
+        class="case-card do-animate"
+        :style="{ animationDelay: `${2.5 + index * 2.1}s` }"
       >
         <!-- Thumbnail -->
         <div class="card-thumb">
@@ -34,12 +33,7 @@
 <script>
 export default {
   name: "CaseStudyCards",
-  props: {
-    videoEnded: {
-      type: Boolean,
-      default: false,
-    },
-  },
+
   data() {
     return {
       allCaseStudies: [
@@ -109,7 +103,7 @@ export default {
 
 .panel-header.do-animate {
   animation: fadeIn 0.6s ease-out forwards;
-  animation-delay: 0s;
+  animation-delay: 1s;
 }
 
 .panel-label {
