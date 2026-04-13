@@ -2,8 +2,18 @@
   <section class="case-wrapper">
     <DescriptionSection
       :descriptionData="rabbitryDescriptionData"
-      :prototypeLinks="currentPrototypeLinkContent.linkBlocks"
+      :prototypeLinks="[currentPrototypeLinkContent.linkBlocks[1]]"
     />
+    <div class="figma-embed">
+      <iframe
+        style="border: 0px"
+        width="800"
+        height="450"
+        src="https://embed.figma.com/proto/RPl84bxcRD5UPdy56xy9fS/Burrow-Buddies-Rabbitry?page-id=246%3A444&node-id=819-1349&viewport=535%2C478%2C0.05&scaling=scale-down&content-scaling=fixed&starting-point-node-id=819%3A1349&embed-host=share"
+        allowfullscreen
+      ></iframe>
+    </div>
+
     <OverviewSection :overviewContent="rabbitryOverviewContent" />
     <UserResearchSection :researchContent="rabbitryUserResearchContent" />
     <PersonasSection :personas="caseStudyPersonas" />
@@ -643,5 +653,18 @@ export default {
   <style scoped>
 .case-wrapper {
   background: #f7f8f9;
+}
+.figma-embed {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  background: #f7f8f9;
+}
+
+.figma-embed iframe {
+  width: 393px;
+  height: 852px;
+  border: 0px;
+  border-radius: 44px;
 }
 </style>

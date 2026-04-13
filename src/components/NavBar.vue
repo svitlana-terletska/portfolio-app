@@ -22,6 +22,14 @@
       <li><router-link to="/case-studies">Case Studies</router-link></li>
       <li><router-link to="/graphics">Graphics</router-link></li>
       <li><router-link to="/about">About</router-link></li>
+      <li>
+        <a
+          href="https://drive.google.com/file/d/1PEqZeXpE6nPOOkxYmB67_9wIOZXeffl0/view?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Resume</a
+        >
+      </li>
     </ul>
   </nav>
 </template>

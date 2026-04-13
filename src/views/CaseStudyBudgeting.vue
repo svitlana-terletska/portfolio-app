@@ -2,8 +2,21 @@
   <section class="case-wrapper">
     <DescriptionSection
       :descriptionData="budgetingDescriptionData"
-      :prototypeLinks="currentPrototypeLinkContent.linkBlocks"
+      :prototypeLinks="[
+        currentPrototypeLinkContent.linkBlocks[0],
+        currentPrototypeLinkContent.linkBlocks[2],
+      ]"
     />
+    <div class="figma-embed">
+      <iframe
+        style="border: 0px"
+        width="800"
+        height="450"
+        src="https://embed.figma.com/proto/bXiFTb5YwbCBpdUAc4IGau/Budgeting-App?page-id=63%3A557&type=design&node-id=63-591&viewport=598%2C373%2C0.29&scaling=scale-down&starting-point-node-id=63%3A591&embed-host=share"
+        allowfullscreen
+      ></iframe>
+    </div>
+
     <OverviewSection :overviewContent="budgetingOverviewContent" />
     <UserResearchSection :researchContent="budgetingUserResearchContent" />
     <PersonasSection :personas="caseStudyPersonas" />
@@ -522,5 +535,18 @@ export default {
   <style scoped>
 .case-wrapper {
   background: #f7f8f9;
+}
+.figma-embed {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  background: #f7f8f9;
+}
+
+.figma-embed iframe {
+  width: 393px;
+  height: 852px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 44px;
 }
 </style>

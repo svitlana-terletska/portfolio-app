@@ -2,8 +2,14 @@
   <section class="case-wrapper">
     <DescriptionSection
       :descriptionData="vacationDescriptionData"
-      :prototypeLinks="currentPrototypeLinkContent.linkBlocks"
+      :prototypeLinks="[currentPrototypeLinkContent.linkBlocks[1]]"
     />
+    <div class="figma-embed">
+      <iframe
+        src="https://embed.figma.com/proto/Fpj8neNglagFEyutkhCLfB/Vacation-app?node-id=62-286&viewport=226%2C343%2C0.16&scaling=scale-down&content-scaling=fixed&starting-point-node-id=62%3A286&page-id=0%3A1&embed-host=share"
+        allowfullscreen
+      ></iframe>
+    </div>
     <OverviewSection :overviewContent="vacationOverviewContent" />
     <CompetitiveAuditSection :auditContent="currentCompetitiveAuditContent" />
     <UserResearchSection :researchContent="vacationUserResearchContent" />
@@ -522,5 +528,18 @@ export default {
   <style scoped>
 .case-wrapper {
   background: #f7f8f9;
+}
+.figma-embed {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  background: #f7f8f9;
+}
+
+.figma-embed iframe {
+  width: 393px;
+  height: 852px;
+  border: 0px;
+  border-radius: 44px;
 }
 </style>
