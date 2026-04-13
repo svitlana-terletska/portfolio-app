@@ -10,7 +10,11 @@ const routes = [
                 path: '',
                 name: 'Home',
                 // Lazy load HomeView component
-                component: () => import(/* webpackChunkName: "home" */ '@/views/HomeView.vue')
+                component: () => import(/* webpackChunkName: "home" */ '@/views/HomeView.vue'),
+                meta: {
+                    title: 'Svitlana Terletska — UX Designer Portfolio',
+                    description: 'UX Designer portfolio featuring case studies in mobile app design, responsive websites, and user research.'
+                }
             },
             {
                 path: 'about',
@@ -41,6 +45,10 @@ const routes = [
                 name: 'CaseStudyVacation',
                 // Lazy load CaseStudyVacation component
                 component: () => import(/* webpackChunkName: "case-study-vacation" */ '@/views/CaseStudyVacation.vue'),
+                meta: {
+                    title: 'Vacation Planner App Case Study — Svitlana Terletska',
+                    description: 'UX case study for a vacation planner mobile app helping users organize trips, save places, and navigate by distance.'
+                }
             },
             {
                 path: '/case-study/real-estate',
@@ -57,8 +65,12 @@ const routes = [
             {
                 path: '/case-studies',
                 name: 'CaseStudies',
-                // Lazy load CaseStudyCards component (assuming it's a view, not just a component used within other views)
-                component: () => import(/* webpackChunkName: "case-studies" */ '@/views/CaseStudiesView.vue')
+
+                component: () => import(/* webpackChunkName: "case-studies" */ '@/views/CaseStudiesView.vue'),
+                meta: {
+                    title: 'Case Studies — Svitlana Terletska',
+                    description: 'UX design case studies covering Vacation Planner, Budgeting App, Real Estate, Rabbitry, and Medical Cost features.'
+                }
             }
         ]
     }
