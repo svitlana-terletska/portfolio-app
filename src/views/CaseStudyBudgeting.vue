@@ -418,7 +418,7 @@ export default {
           // Video Walkthrough
           {
             heading: "Video Link",
-            url: "https://youtu.be/-bLWQ3msAq0",
+            url: "https://www.loom.com/share/9380bb8ef5a946b6824cb55de08b6e41",
             linkText: "View Walkthrough",
           },
         ],

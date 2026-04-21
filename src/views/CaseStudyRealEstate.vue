@@ -2,7 +2,7 @@
   <section class="case-wrapper">
     <DescriptionSection
       :descriptionData="realestateDescriptionData"
-      :prototypeLinks="currentPrototypeLinkContent.linkBlocks"
+      :prototypeLinks="[currentPrototypeLinkContent.linkBlocks[0]]"
     />
     <OverviewSection :overviewContent="realestateOverviewContent" />
     <UserResearchSection :researchContent="realestatelUserResearchContent" />

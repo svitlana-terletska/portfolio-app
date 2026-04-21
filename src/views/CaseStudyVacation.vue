@@ -173,15 +173,6 @@ export default {
             imageAlt: "Design iteration showing initial layout",
             heading: "Initial Layout Considerations",
             text: "The goal of the Planner feature was to create a well-structured, minimalist design that provides useful information to help users stay focused on their planning tasks. While the Search section serves both user needs for relevant information and business needs such as promoting offers and ads, the Planner section is intended to be solely the user’s space to organize and manage their vacation.",
-
-            /* modalLink: {
-              text: "View Story Board",
-              imageUrl: new URL(
-                "../assets/vacation-story-board.jpg",
-                import.meta.url
-              ).href,
-              imageAlt: "Story Board for Vacation Planner",
-            }, */
           },
           {
             imageUrl: new URL("../assets/vacation-lofi-1.png", import.meta.url)
@@ -391,7 +382,7 @@ export default {
           // Video Walkthrough
           {
             heading: "Video Link",
-            url: "https://youtu.be/-bLWQ3msAq0",
+            url: "https://youtube.com/shorts/F1JIaryCzVk?feature=share",
             linkText: "View Walkthrough",
           },
         ],
