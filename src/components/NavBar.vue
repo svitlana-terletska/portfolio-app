@@ -20,7 +20,7 @@
 
     <ul class="nav-links">
       <li><router-link to="/case-studies">Case Studies</router-link></li>
-      <li><router-link to="/graphics">Graphics</router-link></li>
+      <!-- <li><router-link to="/graphics">Graphics</router-link></li> -->
       <li><router-link to="/about">About</router-link></li>
       <li>
         <a

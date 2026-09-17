@@ -19,6 +19,7 @@
     <UsabilityStudySection :usabilityContent="currentUsabilityStudyContent" />
     <MockupGallery :galleryContent="currentMockupGalleryContent" />
     <PrototypeLink :linkContent="currentPrototypeLinkContent" />
+    <DesignSystemSection :content="vacationDesignSystemContent" />
     <AccessibilitySection :accessibilityContent="currentAccessibilityContent" />
     <TakeawaysSection :takeawaysContent="currentTakeawaysContent" />
     <CaseStudyNav
@@ -41,6 +42,7 @@ import PrototypeLink from "@/components/PrototypeLink.vue";
 import AccessibilitySection from "@/components/AccessibilitySection.vue";
 import TakeawaysSection from "@/components/TakeawaysSection.vue";
 import CaseStudyNav from "@/components/CaseStudyNav.vue";
+import DesignSystemSection from "@/components/DesignSystemSection.vue";
 
 export default {
   name: "CaseStudyVacation",
@@ -54,6 +56,7 @@ export default {
     UsabilityStudySection,
     MockupGallery,
     PrototypeLink,
+    DesignSystemSection,
     AccessibilitySection,
     TakeawaysSection,
     CaseStudyNav,
@@ -66,7 +69,7 @@ export default {
           { label: "Case Study", value: "Vacation Planner Application" },
           { label: "Role", value: "UI/UX Designer" },
           { label: "Timeline", value: "July 2024" },
-          { label: "Scope", value: "Responsive website design" },
+          { label: "Scope", value: "Mobile app design" },
           { label: "Tools", value: "Figma, Adobe Illustrator" },
           {
             label: "Responsibilities",
@@ -390,6 +393,59 @@ export default {
         imageAlt:
           "The screenshot of the Figma prototype view of the rabbitry app",
         imageCaption: "Interactive prototype showcasing key user flows.",
+      },
+
+      //Data for the Design System Section
+      vacationDesignSystemContent: {
+        sectionTitle: "Design System",
+        introParagraphs: [
+          "To keep the interface consistent and scalable, I developed a comprehensive, token-based design system directly within Figma rather than styling each screen independently. The design system is organized in three layers. Primitives hold the raw values — color scales stepped 50–900 with a marked brand anchor, a shared numeric scale for spacing and sizing, and the two type faces (Lato for interface text, Condiment for display). Semantic tokens give those values intent — Primary, Secondary, and the functional hues (Error, Warning, Success, Information) plus a Neutral scale for text, surfaces, and borders. Component tokens then map intent to specific roles and states — text, icons, surfaces, and borders in their default, hover, disabled, and focus forms.",
+
+          "I also built the component layer mode aware from the start, so a dark theme is a single variable mode switch rather than a rebuild.",
+        ],
+        carouselItems: [
+          {
+            image: new URL("../assets/ds-1.png", import.meta.url).href,
+            alt: "Primitive color scales (50–900) with a marked brand anchor, shared across the brand and secondary hues",
+            description:
+              "Primitive color scales (50–900) with a marked brand anchor, shared across the brand and secondary hues.",
+          },
+          {
+            image: new URL("../assets/ds-2.png", import.meta.url).href,
+            alt: "Typography scale used in the Vacation Planner app. Type system: Lato for interface text, Condiment for display headings.",
+            description:
+              "Type system: Lato for interface text, Condiment for display headings.",
+          },
+          {
+            image: new URL("../assets/ds-3.png", import.meta.url).href,
+            alt: "A shared numeric scale. A 4px base unit is used for spacing and sizing, with multiples and fractions of 4px to create a consistent rhythm.",
+            description:
+              "A shared numeric scale. A 4px base unit is used for spacing and sizing, with multiples and fractions of 4px to create a consistent rhythm.Low values 0 and 1 are reserved for special cases like no or small border/radius, and a 9999 value is used to fully round corners.",
+          },
+          {
+            image: new URL("../assets/ds-4.png", import.meta.url).href,
+            alt: "Semantic tokens map raw scales to intent — Primary, Secondary, and the functional hues — so components reference meaning, not hex values.",
+            description:
+              "Semantic tokens map raw scales to intent — Primary, Secondary, and the functional hues — so components reference meaning, not hex values.",
+          },
+          {
+            image: new URL("../assets/ds-5.png", import.meta.url).href,
+            alt: "Component tokens resolve intent to roles and states, with light and dark themes driven by a single variable mode.",
+            description:
+              "Component tokens resolve intent to roles and states, with light and dark themes driven by a single variable mode.",
+          },
+        ],
+        imageTextBlock: {
+          image: new URL("../assets/styles.png", import.meta.url).href,
+          imageAlt:
+            "Heading styles bind to the token layer: H1/H2 use the display face, lower headings use the primary face, with color pulled from the Text token.",
+          imageCaption:
+            "Heading styles bind to the token layer: H1/H2 use the display face, lower headings use the primary face, with color pulled from the Text token.",
+          heading: "Project Styles",
+          paragraphs: [
+            "On top of the tokens I defined text styles grouped by role: a Display group for the H1 and H2 headings in Condiment, and Primary and Body groups for the lower headings and running text in Lato, each with the weight variants I need. The styles don't carry hard coded values — each references the variables underneath (the font family from the font tokens, the color from the Text token) — so a style is a named pointer to the system. The benefit is a single source of truth: change one variable and every style, and every screen using it, updates at once, which keeps the app visually coherent and makes new heading levels or weights trivial to add.",
+          ],
+        },
       },
 
       //Accessibility Vacation
