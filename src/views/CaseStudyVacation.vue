@@ -500,7 +500,7 @@ export default {
                   </svg>`, // Book
                   heading: "What I learned",
                   paragraph1:
-                    "I learned that research, testing, and following a structured design process are essential to creating a successful product. Research and testing help center the design around user needs, guiding decisions throughout development. Evaluating competitors' strengths and weaknesses also provides valuable insight—allowing us to adopt proven features while improving upon those that fail to meet user expectations.",
+                    "The preference test surprised me: 56% of users rated the simpler card layout lower than the more detailed one, even though the simpler version had fewer visual elements. What the data showed was that users in the 45–50 age range (matching persona Anna) valued seeing price, distance, and hours at a glance over visual minimalism. I shifted the hi-fi direction toward denser, information-first cards after that test.",
                 },
               ],
             },
